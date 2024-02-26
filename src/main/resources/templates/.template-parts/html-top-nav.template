@@ -1,0 +1,95 @@
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/user/userHome">Big Boss Lifestyle</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link active" href="/user/userHome">Home
+            <span class="visually-hidden">(current)</span>
+          </a>
+        </li>
+
+
+        
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/transaction/viewTransactions" role="button" aria-haspopup="true" aria-expanded="false">
+
+Transactions
+
+</a>
+
+<div class="dropdown-menu">
+
+<a class="dropdown-item"   <a href="/transaction/viewTransactions">Manage Transactions </a>
+<a class="dropdown-item" href="/transaction/addTransactionForm">Create Transactions</a>
+<div class="dropdown-divider"></div>
+
+</div>
+
+</li>
+        
+        
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/budget/viewBudgets" role="button" aria-haspopup="true" aria-expanded="false">
+
+users
+
+</a>
+
+<div class="dropdown-menu">
+
+<a class="dropdown-item" href="/user/">Manage Users </a>
+<a class="dropdown-item" href="/user/create-user">Create User</a>
+<div class="dropdown-divider"></div>
+
+
+
+</div>
+
+</li>
+
+
+
+        
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="/budget/viewBudgets" role="button" aria-haspopup="true" aria-expanded="false">
+
+Experiences
+
+</a>
+
+<div class="dropdown-menu">
+
+<a class="dropdown-item" href="/budget/viewBudgets">Manage Experiences </a>
+
+<div class="dropdown-divider"></div>
+
+<a class="dropdown-item" href="/budget/addBudgetForm">Create Experience</a>
+
+</div>
+
+</li>
+
+        
+        
+        
+        
+        
+        
+        
+        
+      </ul>
+      
+
+
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,131 @@
+services:
+
+    valorant-digital-workspace-web:
+
+        container_name: valorant-digital-workspace-web
+
+        image: softwareshinobi/valorant-digital-workspace-web
+
+        build: 
+
+            context: web
+
+            dockerfile: Dockerfile
+
+        ports:
+
+            - 8880:80
+
+    valorant-digital-workspace-links:
+
+        container_name: valorant-digital-workspace-links
+
+        image: softwareshinobi/valorant-digital-workspace-links
+
+        build: 
+
+            context: links
+
+            dockerfile: Dockerfile
+
+        ports:
+
+            - 8881:80
+
+    valorant-digital-workspace-docs:
+
+        container_name: valorant-digital-workspace-docs
+
+        image: softwareshinobi/valorant-digital-workspace-docs
+
+        build: 
+
+            context: docs
+
+            dockerfile: Dockerfile
+
+        ports:
+
+            - 8882:80
+
+    valorant-digital-workspace-api:
+
+        container_name: valorant-digital-workspace-api
+        
+        image: softwareshinobi/valorant-digital-workspace-api
+
+        depends_on:
+
+           - valorant-digital-workspace-database
+
+        build: 
+
+            context: .
+
+            dockerfile: Dockerfile
+    
+        restart: always
+
+        ports:
+
+            - "8888:8888"
+
+        environment:
+
+            DB_HOST: valorant-digital-workspace-database
+
+            DB_NAME: valorant_digital_workspace
+
+            DB_USER: valorant_digital_workspace
+
+            DB_PASS: valorant_digital_workspace
+
+    valorant-digital-workspace-database:
+
+        container_name: valorant-digital-workspace-database
+
+        image: mariadb
+
+        ##   volumes:
+
+        ##       - ./.container-volumes/mariadb-server:/var/lib/mysql
+
+        ##   ports:
+
+        ##       - "8886:3306"
+
+        environment:
+
+            MYSQL_ROOT_PASSWORD: aggiepride
+
+            MYSQL_DATABASE: valorant_digital_workspace
+
+            MYSQL_USER: valorant_digital_workspace
+
+            MYSQL_PASSWORD: valorant_digital_workspace
+
+    valorant-digital-workspace-phpmyadmin:
+
+        container_name: valorant-digital-workspace-phpmyadmin
+
+        image: beeyev/phpmyadmin-lightweight
+
+        depends_on:
+
+           - valorant-digital-workspace-database
+
+        links:
+
+           - valorant-digital-workspace-database
+
+        ports:
+
+            - 8885:80
+
+        environment:
+
+            PMA_HOST: valorant-digital-workspace-database
+
+            PMA_PORT: 3306
+
+            PMA_ARBITRARY: 1

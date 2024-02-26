@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>
+        
+            Manage Activities
+    
+    </title>
+
+    <meta charset="utf-8">
+    
+    <link th:href="@{/thousand-oaks/css/theme.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+        <div class="container-fluid">
+
+            <a class="navbar-brand" href="/creation/">
+                
+                Software Shinobi Scrum
+            
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+
+                <ul class="navbar-nav">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/creation/">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/creation/add-new">Add Activities </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/creation/">Manage Activities</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+	
+<div class="container body">
+
+        <div class="main-content">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+       
+
+
+<div class="row">
+   <div class="col-lg-9">
+
+<h1> Created </h1>
+
+
+<div class="table-responsive table--no-card m-b-30">
+<table class="table table-borderless table-striped table-earning">
+<thead>
+<tr>
+<th>ID</th>
+<th>Project</th>
+<th>Activity</th>
+<th class="text-right">Status</th>
+<th class="text-right">Actions</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="activityTask : ${activityTaskList.?[status == 'created']}">
+
+<td th:text="${activityTask.id}"></td>
+
+<td th:text="${activityTask.category}"></td>
+
+<td th:text="${activityTask.description}"></td>
+
+<td th:text="${activityTask.status}" ></td>
+
+<td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+
+</tr>                     
+
+
+
+
+
+</tbody>
+</table>
+</div>
+</div>
+
+</div>
+	   
+                        
+                        
+                        
+                        
+                        
+			 <div class="row">
+                            <div class="col-lg-9">
+							
+							<h1> In Review </h1>
+							
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Activity</th>
+                                                <th class="text-right">Status</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+           
+                                    <tr th:each="activityTask : ${activityTaskList.?[status == 'review']}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+<td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+
+                                    </tr>                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							
+							
+							
+							
+            
+			 </div>
+
+
+			 <div class="row">
+                            <div class="col-lg-9">
+							
+							<h1> Blocked </h1>
+							
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Activity</th>
+                                                <th class="text-right">Status</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+           
+                                    <tr th:each="activityTask : ${activityTaskList.?[status == 'blocked']}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+                              <td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+
+                                    </tr>                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							
+							
+							
+							
+            
+			 </div>
+  
+
+
+
+
+			 <div class="row">
+                            <div class="col-lg-9">
+							
+							<h1> In Development </h1>
+							
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Activity</th>
+                                                <th class="text-right">Status</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+           
+                                    <tr th:each="activityTask : ${activityTaskList.?[status == 'development']}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+                            <td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+
+                                    </tr>                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							
+							
+							
+							
+            
+			 </div>
+  
+
+
+
+
+			 <div class="row">
+                            <div class="col-lg-9">
+							
+							<h1> In Scope </h1>
+							
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Activity</th>
+                                                <th class="text-right">Status</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+           
+                                    <tr th:each="activityTask : ${activityTaskList.?[status == 'scoped']}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+                                <td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+
+                                    </tr>                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							
+							
+							
+							
+            
+			 </div>
+  
+
+
+
+			 <div class="row">
+                            <div class="col-lg-9">
+							
+							<h1> Backlog </h1>
+							
+                                <div class="table-responsive table--no-card m-b-30">
+                                    <table class="table table-borderless table-striped table-earning">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Project</th>
+                                                <th>Activity</th>
+                                                <th class="text-right">Status</th>
+                                                <th class="text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                            
+           
+                                    <tr th:each="activityTask : ${activityTaskList.?[status == 'backlog']}">
+
+                                        <td th:text="${activityTask.id}"></td>
+
+                                        <td th:text="${activityTask.category}"></td>
+
+                                        <td th:text="${activityTask.description}"></td>
+
+                                        <td th:text="${activityTask.status}" ></td>
+
+                             <td>
+
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/edit?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Edit
+
+    </a>
+    
+    <a class="btn btn-primary btn-xs" th:href="@{'/creation/delete?id=' + ${activityTask.id}}">
+
+        <i class="fa fa-trash-o"></i>
+
+        Delete
+
+    </a>
+
+</td>
+                                    </tr>                     
+                                            
+                                            
+                                            
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+							
+							
+							
+							
+            
+			 </div>
+    
+                    </div>
+                </div>
+            </div>
+     
+    <!-- footer content -->
+<footer>
+
+        <div class="pull-right">
+
+        Build with love and intention by
+
+        <a href="https://github.com/software-shinobi">
+
+            Software Shinobi
+
+        </a>
+
+        </div>
+
+        <div class="clearfix"></div>
+
+</footer>
+
+</div>
+
+</div>
+
+</body>
+
+</html>
