@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Slf4j
-@RequestMapping("/transaction")
+@RequestMapping("transaction")
 public class TransactionController {
 
     @Autowired
@@ -25,15 +25,16 @@ public class TransactionController {
     }
 
     @GetMapping("/addTransactionForm")
-    public String addTransactionForm(Model model){
+    public String addTransactionForm(Model model) {
         model.addAttribute("transaction", new Transaction());
         model.addAttribute("formTitle", "Add Transaction");
         return "transaction/addTransactionForm";
     }
+
     @GetMapping("/delete")
-    public String delete(@RequestParam Integer id, Model model, HttpServletRequest request){
+    public String delete(@RequestParam Integer id, Model model, HttpServletRequest request) {
         Object obj = request.getSession().getAttribute("currentUser");
-        if(obj == null) {
+        if (obj == null) {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
         }
@@ -43,33 +44,31 @@ public class TransactionController {
     }
 
     @GetMapping("/edit")
-    public String edit(@RequestParam Integer id, Model model, HttpServletRequest request){
+    public String edit(@RequestParam Integer id, Model model, HttpServletRequest request) {
         Object obj = request.getSession().getAttribute("currentUser");
-        if(obj == null) {
+        if (obj == null) {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
         }
 
         Optional<Transaction> transactionOptional = transactionService.get(id);
-        if(transactionOptional.isPresent()){
+        if (transactionOptional.isPresent()) {
             model.addAttribute("transaction", transactionOptional.get());
             model.addAttribute("formTitle", "Edit Transaction");
             return "transaction/editTransactionForm";
-        }
-        else {
+        } else {
             model.addAttribute("error", "Transaction not found for id: " + id);
             return "redirect:/transaction/viewTransactions";
         }
     }
 
     @PostMapping("/saveTransaction")
-    public String saveTransaction(@ModelAttribute Transaction transaction, Model model, HttpServletRequest request){
+    public String saveTransaction(@ModelAttribute Transaction transaction, Model model, HttpServletRequest request) {
         Object obj = request.getSession().getAttribute("currentUser");
-        if(obj == null) {
+        if (obj == null) {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
-        }
-        else {
+        } else {
             MyUser currentUser = (MyUser) obj;
             model.addAttribute("myUser", currentUser);
             transaction.setUserId(currentUser.getId());
@@ -77,11 +76,10 @@ public class TransactionController {
             transactionService.saveTransaction(transaction);
 
             Transaction savedTransaction = this.transactionService.saveTransaction(transaction);
-            if(savedTransaction != null) {
+            if (savedTransaction != null) {
                 model.addAttribute("info", "Save Transaction success!");
                 model.addAttribute("transaction", savedTransaction);
-            }
-            else{
+            } else {
                 model.addAttribute("transaction", transaction);
                 model.addAttribute("error", "Save Transaction Failed!");
             }
@@ -90,23 +88,20 @@ public class TransactionController {
         }
     }
 
-
     @GetMapping("/viewTransactions")
-    public String viewTransactions(Model model, HttpServletRequest request){
+    public String viewTransactions(Model model, HttpServletRequest request) {
         Object obj = request.getSession().getAttribute("currentUser");
-        if(obj == null) {
+        if (obj == null) {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
-        }
-        else {
+        } else {
             MyUser currentUser = (MyUser) obj;
             model.addAttribute("myUser", currentUser);
 
             List<Transaction> transactions = transactionService.getTransactionsForUser(currentUser.getId());
-            if(transactions != null) {
+            if (transactions != null) {
                 model.addAttribute("transactions", transactions);
-            }
-            else{
+            } else {
                 model.addAttribute("transactions", new ArrayList<>());
                 return "transaction/transactionList";
             }

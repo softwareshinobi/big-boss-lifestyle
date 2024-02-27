@@ -10,10 +10,10 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
             </goals>
             <properties>
-                <exec.vmArgs>-DDB_HOST=207.154.248.72 -DDB_NAME=callisto -DDB_USER=root -DDB_PASS=aggiepride</exec.vmArgs>
+                <exec.vmArgs>-DDB_HOST=104.248.100.154 -DDB_NAME=sandbox -DDB_USER=root -DDB_PASS=aggiepride</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs></exec.appArgs>
-                <exec.mainClass>digital.valorantsoftware.workspace.ValorantDigitalWorkspace</exec.mainClass>
+                <exec.mainClass>digital.agenteight.bigbosslifestyle.BigBossLifestyle</exec.mainClass>
                 <exec.executable>java</exec.executable>
             </properties>
         </action>
@@ -27,10 +27,10 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
             </goals>
             <properties>
-                <exec.vmArgs>-DDB_HOST=207.154.248.72 -DDB_NAME=callisto -DDB_USER=root -DDB_PASS=aggiepride -agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
+                <exec.vmArgs>-DDB_HOST=104.248.100.154 -DDB_NAME=sandbox -DDB_USER=root -DDB_PASS=aggiepride -agentlib:jdwp=transport=dt_socket,server=n,address=${jpda.address}</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
                 <exec.appArgs></exec.appArgs>
-                <exec.mainClass>digital.valorantsoftware.workspace.ValorantDigitalWorkspace</exec.mainClass>
+                <exec.mainClass>digital.agenteight.bigbosslifestyle.BigBossLifestyle</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <jpda.listen>true</jpda.listen>
             </properties>
@@ -45,9 +45,9 @@
                 <goal>org.codehaus.mojo:exec-maven-plugin:3.1.0:exec</goal>
             </goals>
             <properties>
-                <exec.vmArgs>-DDB_HOST=207.154.248.72 -DDB_NAME=callisto -DDB_USER=root -DDB_PASS=aggiepride</exec.vmArgs>
+                <exec.vmArgs>-DDB_HOST=104.248.100.154 -DDB_NAME=sandbox -DDB_USER=root -DDB_PASS=aggiepride</exec.vmArgs>
                 <exec.args>${exec.vmArgs} -classpath %classpath ${exec.mainClass} ${exec.appArgs}</exec.args>
-                <exec.mainClass>digital.valorantsoftware.workspace.ValorantDigitalWorkspace</exec.mainClass>
+                <exec.mainClass>digital.agenteight.bigbosslifestyle.BigBossLifestyle</exec.mainClass>
                 <exec.executable>java</exec.executable>
                 <exec.appArgs></exec.appArgs>
             </properties>

@@ -76,11 +76,11 @@ public class MyUserController {
 
         }
 
-            return displayUserManageScreen(model, request);
+        return displayUserManageScreen(model, request);
 
     }
-    
-  @GetMapping("/signupForm")
+
+    @GetMapping("/signupForm")
     public String goTdddoIndex(Model model) {
         model.addAttribute("myUser", new MyUser());
         return "user/register";
@@ -99,7 +99,7 @@ public class MyUserController {
             return "user/register";
         }
     }
-      
+
     @GetMapping("/loginForm")
     public String loginForm(Model model) {
         model.addAttribute("myUser", new MyUser());
@@ -110,12 +110,15 @@ public class MyUserController {
 
     @PostMapping("/login")
     public String login(@ModelAttribute MyUser myUser, Model model, HttpServletRequest request) {
+
         System.out.println(">> myUser: " + myUser);
+
         MyUser currentUser = this.userService.authenticateUser(myUser);
+
         if (currentUser != null) {
             model.addAttribute("myUser", currentUser);
             request.getSession(true).setAttribute("currentUser", currentUser);
-            return "home/landing";
+            return "home/home";
         } else {
             model.addAttribute("error", "Invalid credentials. Try Again.");
             return "user/login";
@@ -136,9 +139,6 @@ public class MyUserController {
         return "home/landing";
 
     }
-
-  
-
 
     @GetMapping("/edit-user")
     public String editUser(@RequestParam Integer id, Model model, HttpServletRequest request) {
@@ -176,17 +176,17 @@ public class MyUserController {
         }
 
     }
-    
+
     @PostMapping("/edit-user")
     public String processUserEditForm(@ModelAttribute MyUser myUser, Model model, HttpServletRequest request) {
 
         System.out.println(" enter > processUserEditForm / " + myUser);
 
-                System.out.println(" myUser / " + myUser);
+        System.out.println(" myUser / " + myUser);
 
         MyUser savedUser = this.userService.saveUser(myUser);
 
-                System.out.println(" savedUser / " + myUser);
+        System.out.println(" savedUser / " + myUser);
 
         if (savedUser != null) {
 
@@ -198,10 +198,10 @@ public class MyUserController {
 
         }
 
-            return displayUserManageScreen(model, request);
+        return displayUserManageScreen(model, request);
 
     }
-    
+
     @GetMapping("/delete-user")
     public String delete(@RequestParam Integer id, Model model, HttpServletRequest request) {
 
@@ -223,7 +223,7 @@ public class MyUserController {
 
         this.userService.delete(id);
 
-            return displayUserManageScreen(model, request);
+        return displayUserManageScreen(model, request);
 
     }
 

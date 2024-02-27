@@ -1,62 +1,14 @@
 services:
 
-    valorant-digital-workspace-web:
+    big-boss-lifestyle-api:
 
-        container_name: valorant-digital-workspace-web
-
-        image: softwareshinobi/valorant-digital-workspace-web
-
-        build: 
-
-            context: web
-
-            dockerfile: Dockerfile
-
-        ports:
-
-            - 8880:80
-
-    valorant-digital-workspace-links:
-
-        container_name: valorant-digital-workspace-links
-
-        image: softwareshinobi/valorant-digital-workspace-links
-
-        build: 
-
-            context: links
-
-            dockerfile: Dockerfile
-
-        ports:
-
-            - 8881:80
-
-    valorant-digital-workspace-docs:
-
-        container_name: valorant-digital-workspace-docs
-
-        image: softwareshinobi/valorant-digital-workspace-docs
-
-        build: 
-
-            context: docs
-
-            dockerfile: Dockerfile
-
-        ports:
-
-            - 8882:80
-
-    valorant-digital-workspace-api:
-
-        container_name: valorant-digital-workspace-api
+        container_name: big-boss-lifestyle-api
         
-        image: softwareshinobi/valorant-digital-workspace-api
+        image: softwareshinobi/big-boss-lifestyle-api
 
         depends_on:
 
-           - valorant-digital-workspace-database
+           - big-boss-lifestyle-database
 
         build: 
 
@@ -72,17 +24,17 @@ services:
 
         environment:
 
-            DB_HOST: valorant-digital-workspace-database
+            DB_HOST: big-boss-lifestyle-database
 
-            DB_NAME: valorant_digital_workspace
+            DB_NAME: big_boss_lifestyle
 
-            DB_USER: valorant_digital_workspace
+            DB_USER: big_boss_lifestyle
 
-            DB_PASS: valorant_digital_workspace
+            DB_PASS: big_boss_lifestyle
 
-    valorant-digital-workspace-database:
+    big-boss-lifestyle-database:
 
-        container_name: valorant-digital-workspace-database
+        container_name: big-boss-lifestyle-database
 
         image: mariadb
 
@@ -98,25 +50,25 @@ services:
 
             MYSQL_ROOT_PASSWORD: aggiepride
 
-            MYSQL_DATABASE: valorant_digital_workspace
+            MYSQL_DATABASE: big_boss_lifestyle
 
-            MYSQL_USER: valorant_digital_workspace
+            MYSQL_USER: big_boss_lifestyle
 
-            MYSQL_PASSWORD: valorant_digital_workspace
+            MYSQL_PASSWORD: big_boss_lifestyle
 
-    valorant-digital-workspace-phpmyadmin:
+    big-boss-lifestyle-phpmyadmin:
 
-        container_name: valorant-digital-workspace-phpmyadmin
+        container_name: big-boss-lifestyle-phpmyadmin
 
         image: beeyev/phpmyadmin-lightweight
 
         depends_on:
 
-           - valorant-digital-workspace-database
+           - big-boss-lifestyle-database
 
         links:
 
-           - valorant-digital-workspace-database
+           - big-boss-lifestyle-database
 
         ports:
 
@@ -124,7 +76,7 @@ services:
 
         environment:
 
-            PMA_HOST: valorant-digital-workspace-database
+            PMA_HOST: big-boss-lifestyle-database
 
             PMA_PORT: 3306
 
