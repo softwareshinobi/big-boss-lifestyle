@@ -1,4 +1,4 @@
-package digital.agenteight.bigbosslifestyle.user;
+package digital.agenteight.bigbosslifestyle.account;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,7 +17,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Table(name = "user")
-public class MyUser {
+public class Account {
 
 
     @Id
@@ -37,19 +37,19 @@ public class MyUser {
     String password;
 
 
-    private void addUser(MyUser myUser) {
+    private void addUser(Account myUser) {
         myUser.add(myUser);
     }
 
-    private void add(MyUser myUser) {
+    private void add(Account myUser) {
     }
 
-    private void removeUser(MyUser myUser) {
+    private void removeUser(Account myUser) {
         myUser.remove(myUser);
 
     }
 
-    private void remove(MyUser myUser) {
+    private void remove(Account myUser) {
     }
 
     public Integer getId() {
@@ -96,7 +96,7 @@ public class MyUser {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MyUser myUser = (MyUser) o;
+        Account myUser = (Account) o;
         return Objects.equals(firstName, myUser.firstName) && Objects.equals(lastName, myUser.lastName) && email.equals(myUser.email) && Objects.equals(password, myUser.password);
     }
 

@@ -1,6 +1,6 @@
 package digital.agenteight.bigbosslifestyle.transaction;
 
-import digital.agenteight.bigbosslifestyle.user.MyUser;
+import digital.agenteight.bigbosslifestyle.account.Account;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +69,7 @@ public class TransactionController {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
         } else {
-            MyUser currentUser = (MyUser) obj;
+            Account currentUser = (Account) obj;
             model.addAttribute("myUser", currentUser);
             transaction.setUserId(currentUser.getId());
 
@@ -95,7 +95,7 @@ public class TransactionController {
             model.addAttribute("error", "Login session expired");
             return "redirect:/user/loginForm";
         } else {
-            MyUser currentUser = (MyUser) obj;
+            Account currentUser = (Account) obj;
             model.addAttribute("myUser", currentUser);
 
             List<Transaction> transactions = transactionService.getTransactionsForUser(currentUser.getId());

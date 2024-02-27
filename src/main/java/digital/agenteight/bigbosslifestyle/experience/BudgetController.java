@@ -1,6 +1,6 @@
 package digital.agenteight.bigbosslifestyle.experience;
 
-import digital.agenteight.bigbosslifestyle.user.MyUser;
+import digital.agenteight.bigbosslifestyle.account.Account;
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
@@ -110,7 +110,7 @@ public class BudgetController {
 
         } else {
 
-            MyUser currentUser = (MyUser) obj;
+            Account currentUser = (Account) obj;
 
             model.addAttribute("myUser", currentUser);
 
@@ -156,7 +156,7 @@ public class BudgetController {
 
         } else {
             System.out.println("wxxxxxre?");
-            MyUser currentUser = (MyUser) obj;
+            Account currentUser = (Account) obj;
 
             model.addAttribute("myUser", currentUser);
 

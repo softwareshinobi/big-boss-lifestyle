@@ -1,7 +1,7 @@
 package digital.agenteight.bigbosslifestyle.experience;
 
 import digital.agenteight.bigbosslifestyle.transaction.Transaction;
-import digital.agenteight.bigbosslifestyle.user.MyUser;
+import digital.agenteight.bigbosslifestyle.account.Account;
 import jakarta.persistence.*;
 import java.util.Objects;
 import lombok.*;
@@ -47,11 +47,11 @@ public class Budget {
 //        log.debug("remove the transaction");
     }
 
-    private void addUser(MyUser myUser) {
+    private void addUser(Account myUser) {
 
     }
 
-    private void removeUser(MyUser myUser) {
+    private void removeUser(Account myUser) {
 
     }
 

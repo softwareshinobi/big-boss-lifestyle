@@ -1,4 +1,4 @@
-package digital.agenteight.bigbosslifestyle.user;
+package digital.agenteight.bigbosslifestyle.account;
 
 import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,15 +16,38 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @Slf4j
-@RequestMapping("/user")
-public class MyUserController {
+@RequestMapping("user")
+public class AccountController {
 
     @Autowired
-    MyUserService userService;
+    AccountService accountService;
 
     @Autowired
-    public MyUserController(MyUserService userService) {
-        this.userService = userService;
+    public AccountController(AccountService accountService) {
+
+        this.accountService = accountService;
+
+    }
+
+    @GetMapping("/userHome")
+    public String userHome(Model model, HttpServletRequest request) {
+
+        Object obj = request.getSession().getAttribute("currentUser");
+
+        if (obj == null) {
+
+            model.addAttribute("error", "Login session expired");
+
+            return "redirect:/auth/login";
+
+        }
+
+        Account currentUser = (Account) obj;
+
+        model.addAttribute("myUser", currentUser);
+
+        return "home/landing";
+
     }
 
     @GetMapping("/")
@@ -40,31 +64,31 @@ public class MyUserController {
 
         }
 
-        MyUser currentUser = (MyUser) obj;
+        Account currentUser = (Account) obj;
         model.addAttribute("myUser", currentUser);
 
-        List<MyUser> MyUserList = this.userService.getAll();
+        List<Account> MyUserList = this.accountService.getAll();
         model.addAttribute("myUserList", MyUserList);
 
         return "user/manage";
 
     }
 
-    @GetMapping("/create-user")
+    @GetMapping("/create")
     public String displayUserCreateScreen(Model model, HttpServletRequest request) {
 
-        model.addAttribute("myUser", new MyUser());
+        model.addAttribute("myUser", new Account());
 
         return "user/create";
 
     }
 
-    @PostMapping("/create-user")
-    public String processUserCreateForm(@ModelAttribute MyUser myUser, Model model, HttpServletRequest request) {
+    @PostMapping("/create")
+    public String processUserCreateForm(@ModelAttribute Account myUser, Model model, HttpServletRequest request) {
 
         System.out.println(" enter > processUserCreateForm / " + myUser);
 
-        MyUser savedUser = this.userService.saveUser(myUser);
+        Account savedUser = this.accountService.saveUser(myUser);
 
         if (savedUser != null) {
 
@@ -80,67 +104,7 @@ public class MyUserController {
 
     }
 
-    @GetMapping("/signupForm")
-    public String goTdddoIndex(Model model) {
-        model.addAttribute("myUser", new MyUser());
-        return "user/register";
-
-    }
-
-    @PostMapping("/signupUser")
-    public String signupUser(@ModelAttribute MyUser myUser, Model model) {
-        System.out.println(">> myUser: " + myUser);
-        MyUser savedUser = this.userService.saveUser(myUser);
-        if (savedUser != null) {
-            model.addAttribute("info", "Signup success!");
-            return "index";
-        } else {
-            model.addAttribute("error", "Signup Failed");
-            return "user/register";
-        }
-    }
-
-    @GetMapping("/loginForm")
-    public String loginForm(Model model) {
-        model.addAttribute("myUser", new MyUser());
-        model.addAttribute("error", "");
-        return "user/login";
-
-    }
-
-    @PostMapping("/login")
-    public String login(@ModelAttribute MyUser myUser, Model model, HttpServletRequest request) {
-
-        System.out.println(">> myUser: " + myUser);
-
-        MyUser currentUser = this.userService.authenticateUser(myUser);
-
-        if (currentUser != null) {
-            model.addAttribute("myUser", currentUser);
-            request.getSession(true).setAttribute("currentUser", currentUser);
-            return "home/home";
-        } else {
-            model.addAttribute("error", "Invalid credentials. Try Again.");
-            return "user/login";
-        }
-    }
-
-    @GetMapping("/userHome")
-    public String userHome(Model model, HttpServletRequest request) {
-
-        Object obj = request.getSession().getAttribute("currentUser");
-        if (obj == null) {
-            model.addAttribute("error", "Login session expired");
-            return "redirect:/user/loginForm";
-        }
-
-        MyUser currentUser = (MyUser) obj;
-        model.addAttribute("myUser", currentUser);
-        return "home/landing";
-
-    }
-
-    @GetMapping("/edit-user")
+    @GetMapping("/edit")
     public String editUser(@RequestParam Integer id, Model model, HttpServletRequest request) {
 
         Object currentUser = request.getSession().getAttribute("currentUser");
@@ -153,13 +117,13 @@ public class MyUserController {
 
         } else {
 
-            MyUser authenticatedUser = (MyUser) currentUser;
+            Account authenticatedUser = (Account) currentUser;
 
             model.addAttribute("myUser", authenticatedUser);
 
         }
 
-        Optional<MyUser> userToEdit = this.userService.get(id);
+        Optional<Account> userToEdit = this.accountService.get(id);
 
         if (userToEdit.isPresent()) {
 
@@ -177,14 +141,14 @@ public class MyUserController {
 
     }
 
-    @PostMapping("/edit-user")
-    public String processUserEditForm(@ModelAttribute MyUser myUser, Model model, HttpServletRequest request) {
+    @PostMapping("/edit")
+    public String processUserEditForm(@ModelAttribute Account myUser, Model model, HttpServletRequest request) {
 
         System.out.println(" enter > processUserEditForm / " + myUser);
 
         System.out.println(" myUser / " + myUser);
 
-        MyUser savedUser = this.userService.saveUser(myUser);
+        Account savedUser = this.accountService.saveUser(myUser);
 
         System.out.println(" savedUser / " + myUser);
 
@@ -202,7 +166,7 @@ public class MyUserController {
 
     }
 
-    @GetMapping("/delete-user")
+    @DeleteMapping("/delete")
     public String delete(@RequestParam Integer id, Model model, HttpServletRequest request) {
 
         Object currentUser = request.getSession().getAttribute("currentUser");
@@ -215,13 +179,13 @@ public class MyUserController {
 
         } else {
 
-            MyUser authenticatedUser = (MyUser) currentUser;
+            Account authenticatedUser = (Account) currentUser;
 
             model.addAttribute("myUser", authenticatedUser);
 
         }
 
-        this.userService.delete(id);
+        this.accountService.delete(id);
 
         return displayUserManageScreen(model, request);
 
